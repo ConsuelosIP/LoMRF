@@ -23,7 +23,7 @@ import lomrf.mln.learning.structure.ClauseConstructor.ClauseType.ClauseType
 import lomrf.mln.learning.structure.hypergraph.HPath
 import lomrf.mln.model._
 import scala.util.{Success, Failure, Try}
-import scalaxy.streams._
+//import scalaxy.streams._
 
 /**
  * Clause constructor provides various methods for constructing clauses.
@@ -353,7 +353,8 @@ object ClauseConstructor {
         val placeMarkers = modes(signature).placeMarkers
         var terms = Vector.empty[Term]
 
-        optimize { for (i <- constants.indices) {
+        //optimize {
+        for (i <- constants.indices) {
           val constant = constants(i)
           if (placeMarkers(i).constant) terms :+= Constant(constant)
           else if (constantsToVar.contains(constant)) terms :+= constantsToVar(constant)
@@ -362,7 +363,8 @@ object ClauseConstructor {
             constantsToVar += constant -> variable
             terms :+= variable
           }
-        }}
+        }
+        //}
 
         NegativeLiteral(AtomicFormula(signature.symbol, terms))
       }
@@ -442,7 +444,8 @@ object ClauseConstructor {
         val placeMarkers = modes(signature).placeMarkers
         var terms = Vector[Term]()
 
-        optimize { for (i <- constants.indices) {
+        //optimize {
+        for (i <- constants.indices) {
           val constant = constants(i)
           if (placeMarkers(i).constant) terms :+= Constant(constant)
           else if (constantsToVar.contains(constant)) terms :+= constantsToVar(constant)
@@ -451,7 +454,8 @@ object ClauseConstructor {
             constantsToVar += constant -> variable
             terms :+= variable
           }
-        }}
+        }
+        //}
 
         AtomicFormula(signature.symbol, terms)
       }

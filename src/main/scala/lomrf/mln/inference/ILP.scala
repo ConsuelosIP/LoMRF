@@ -31,7 +31,7 @@ import gnu.trove.map.hash.TIntObjectHashMap
 import optimus.algebra._
 import optimus.optimization._
 import scala.util.{Failure, Success}
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 import scala.language.postfixOps
 import auxlib.trove.TroveConversions._
 
@@ -287,7 +287,7 @@ final class ILP(mrf: MRF, annotationDB: Map[AtomSignature, AtomEvidenceDB] = Map
        *
        * Note: Better to keep delta >= 0 for true values and < for false.
        */
-      if(ilpRounding == RoundingScheme.ROUNDUP) optimize {
+      if(ilpRounding == RoundingScheme.ROUNDUP) { //optimize {
 
         for (i <- fractionalSolutions.size - 1 to 0 by -1) {
           val id = fractionalSolutions(i)

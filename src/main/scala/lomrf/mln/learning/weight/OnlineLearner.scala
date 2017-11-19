@@ -29,7 +29,7 @@ import lomrf.mln.inference.Solver._
 import lomrf.mln.model.{AtomEvidenceDB, MLN}
 import lomrf.mln.model.mrf.MRF
 import lomrf.util._
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 import scala.language.postfixOps
 
 /**
@@ -264,13 +264,13 @@ final class OnlineLearner(mln: MLN, algorithm: Algorithm, lossAugmented: Boolean
 
       // Calculate true counts minus inferred counts
       val delta = Array.fill[Int](numberOfClauses)(0)
-      optimize{
-        for (clauseIdx <- 0 until numberOfClauses) {
-          if (!mrf.mln.clauses(clauseIdx).isHard)
-            delta(clauseIdx) = trueCounts(clauseIdx) - inferredCounts(clauseIdx)
-          weightedDeltaPhi += weights(clauseIdx) * delta(clauseIdx)
-        }
+      //optimize{
+      for (clauseIdx <- 0 until numberOfClauses) {
+        if (!mrf.mln.clauses(clauseIdx).isHard)
+          delta(clauseIdx) = trueCounts(clauseIdx) - inferredCounts(clauseIdx)
+        weightedDeltaPhi += weights(clauseIdx) * delta(clauseIdx)
       }
+      //}
       val deltaPhi = delta.map( dif => Math.abs(dif) ).sum
 
       info("\nDelta = [" + delta.deep.mkString(", ") + "]" +
@@ -288,22 +288,22 @@ final class OnlineLearner(mln: MLN, algorithm: Algorithm, lossAugmented: Boolean
       info("Learning rate: " + learningRate)
 
       // Update weights
-      optimize {
-        for (clauseIdx <- 0 until numberOfClauses)
-          weights(clauseIdx) = (t - 1) * weights(clauseIdx) / t + learningRate * delta(clauseIdx)
-      }
+      //optimize {
+      for (clauseIdx <- 0 until numberOfClauses)
+        weights(clauseIdx) = (t - 1) * weights(clauseIdx) / t + learningRate * delta(clauseIdx)
+      //}
     }
     else if(algorithm == Algorithm.ADAGRAD_FB) {
 
       // Compute subgradients for all clausese
       val subgradients = Array.fill[Int](numberOfClauses)(0)
-      optimize {
-        for (clauseIdx <- 0 until numberOfClauses) {
-          if (!mrf.mln.clauses(clauseIdx).isHard)
-            subgradients(clauseIdx) = inferredCounts(clauseIdx) - trueCounts(clauseIdx)
-          weightedDeltaPhi += weights(clauseIdx) * subgradients(clauseIdx)
-        }
+      //optimize {
+      for (clauseIdx <- 0 until numberOfClauses) {
+        if (!mrf.mln.clauses(clauseIdx).isHard)
+          subgradients(clauseIdx) = inferredCounts(clauseIdx) - trueCounts(clauseIdx)
+        weightedDeltaPhi += weights(clauseIdx) * subgradients(clauseIdx)
       }
+      //}
 
       var clauseIdx = 0
       while (clauseIdx < numberOfClauses) {

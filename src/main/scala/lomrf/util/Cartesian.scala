@@ -23,7 +23,7 @@ import lomrf.logic.Variable
 import lomrf.mln.model.ConstantsSet
 
 import scala.{collection => scol}
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 import scala.language.postfixOps
 
 /**
@@ -89,12 +89,12 @@ object Cartesian {
           currentIterator = iterators(idx)
           if (currentIterator.hasNext) {
 
-            optimize{
-              for (i <- 0 until idx) {
-                iterators(i) = sets(i).iterator
-                elements(i) = iterators(i).next()
-              }
+            //optimize{
+            for (i <- 0 until idx) {
+              iterators(i) = sets(i).iterator
+              elements(i) = iterators(i).next()
             }
+            //}
 
             elements(idx) = currentIterator.next()
             stop = true

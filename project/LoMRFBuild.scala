@@ -97,7 +97,7 @@ object LoMRFBuild extends AutoPlugin {
   private lazy val baseProjectSettings: Seq[Setting[_]] = Seq(
 
     organization := "com.github.anskarl",
-    scalaVersion := "2.11.12",
+    scalaVersion := "2.12.4", //"2.11.12",
     name := "LoMRF",
     headers := projectHeaders,
 

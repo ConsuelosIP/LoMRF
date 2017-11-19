@@ -43,7 +43,7 @@ object Dependencies {
     final val Logback = "1.2.3"
     final val SLF4JVersion = "1.7.25"
     final val ScalaTest = "3.0.4"
-    final val Optimus = "2.0.0"
+    final val Optimus = "2.1.0-SNAPSHOT"
     final val Trove4j = "3.0.3"
     final val JTS = "1.14.0"
     final val Scalaxy = "0.3.4"
@@ -79,7 +79,7 @@ object Dependencies {
     "com.vividsolutions" % "jts-core" % v.JTS,
 
     // Optimized Range foreach loops
-    "com.nativelibs4java" %% "scalaxy-streams" % v.Scalaxy % "provided",
+    //"com.nativelibs4java" %% "scalaxy-streams" % v.Scalaxy % "provided",
 
     // Adding auxlib library requires local publishing (for details see https://github.com/anskarl/auxlib)
     "com.github.anskarl" %% "auxlib-log" % v.AuxLib,

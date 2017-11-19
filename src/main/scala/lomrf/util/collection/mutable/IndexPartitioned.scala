@@ -18,7 +18,7 @@
 package lomrf.util.collection.mutable
 
 import scala.reflect.ClassTag
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 
 
 trait IndexPartitioned[T] extends lomrf.util.collection.IndexPartitioned[T] {
@@ -46,7 +46,9 @@ object IndexPartitioned{
   def apply[T: ClassTag](size: Int, initializer:(Int => T)): IndexPartitioned[T] = {
     val data = new Array[T](size)
 
-    optimize(for(i <- 0 until size) data(i) = initializer(i))
+    //optimize{
+    for(i <- 0 until size) data(i) = initializer(i)
+    //}
 
     apply(data)
   }

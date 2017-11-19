@@ -30,7 +30,7 @@ import scala.collection.mutable
 import scala.collection.parallel.mutable.ParArray
 import scala.util.{Failure, Success}
 import lomrf.logic.AtomSignatureOps._
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 
 /**
  * This class represents the MRF state.
@@ -253,10 +253,10 @@ final class MRFState private(val mrf: MRF,
 
     var countNeg = 0
 
-    optimize{
-      for(i <- 0 until unsatisfied)
-        if(Unsatisfied(i).getWeight < 0) countNeg += 1
-    }
+    //optimize{
+    for(i <- 0 until unsatisfied)
+      if(Unsatisfied(i).getWeight < 0) countNeg += 1
+    //}
 
     var likelihood, likelihoodUB = ZERO
 
@@ -406,7 +406,7 @@ final class MRFState private(val mrf: MRF,
     while (nIterator.hasNext) {
       nIterator.advance()
       val constraint = nIterator.value()
-      if (!constraint.inactive && !constraint.isPositive && !constraint.isSatisfiedByFixed) optimize{
+      if (!constraint.inactive && !constraint.isPositive && !constraint.isSatisfiedByFixed) {//optimize{
         for (i <- constraint.literals.indices)
           fixAtom(math.abs(constraint.literals(i)), constraint.literals(i) < 0)
       }

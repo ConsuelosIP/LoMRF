@@ -25,7 +25,7 @@ import gnu.trove.set.TIntSet
 
 import scala.collection.mutable
 import scala.reflect._
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 
 package object util {
 
@@ -51,9 +51,9 @@ package object util {
       val position = idx - sum
       val iterator = elements(segIndex).iterator()
 
-      optimize {
-        for( i <- 0 until position) iterator.next()
-      }
+      //optimize {
+      for( i <- 0 until position) iterator.next()
+      //}
 
       iterator.next()
     }
@@ -78,9 +78,9 @@ package object util {
       val position = idx - sum
       val iterator = elements(segIndex).iterator()
 
-      optimize{
-        for( i <- 0 to position) iterator.advance()
-      }
+      //optimize{
+      for( i <- 0 to position) iterator.advance()
+      //}
 
       iterator.key()
     }
@@ -105,9 +105,9 @@ package object util {
       val position = idx - sum
       val iterator = elements(segIndex).iterator()
 
-      optimize {
-        for( i <- 0 to position) iterator.advance()
-      }
+      //optimize {
+      for( i <- 0 to position) iterator.advance()
+      //}
 
       (iterator.key(), iterator.value())
     }
@@ -401,7 +401,7 @@ package object util {
   }
 
 
-  def collectByKey[K,V](collection: Traversable[(K, V)]) = {
+  def collectByKey[K,V](collection: Traversable[(K, V)]): Map[K, Set[V]] = {
     collection
       .groupBy(_._1)
       .map {

@@ -28,7 +28,7 @@ import lomrf._
 import lomrf.util.collection.IndexPartitioned
 
 import scala.language.postfixOps
-import scalaxy.streams.optimize
+//import scalaxy.streams.optimize
 
 /**
  * CliqueRegisterWorker stores a partition of ground clauses that result from grounding workers.
@@ -196,7 +196,7 @@ final class CliqueRegisterWorker private(val index: Int,
   }
 
 
-  private def registerAtoms(variables: Array[Int], cliqueID: Int): Unit = optimize {
+  private def registerAtoms(variables: Array[Int], cliqueID: Int): Unit = { //optimize {
     // Register (atomID -> cliqueID) mappings
     for (variable <- variables; atomID = math.abs(variable))
       atomRegisters(atomID) ! RegisterAtom(atomID, cliqueID)
